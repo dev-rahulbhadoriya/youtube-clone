@@ -4,7 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-.env
+/.env
+/package-lock.json
+/yarn.lock
 # testing
 /coverage
 
