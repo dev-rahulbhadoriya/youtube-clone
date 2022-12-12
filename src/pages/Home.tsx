@@ -10,8 +10,10 @@ export default function Home() {
 
   useEffect(()=>{
     dispatch(getHomePageVideos(false))
+    console.log(video);
+    
   },[dispatch])
-  
+
   return (
     <div className='max-h-screen overflow-hidden'>
      <div style={{height: "7.5vh"}}>
