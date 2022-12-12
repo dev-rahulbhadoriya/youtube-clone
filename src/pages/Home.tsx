@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Card from '../components/Card';
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
+import Spinner from '../components/Spinner';
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { getHomePageVideos } from '../store/reducers/getHomePageVideos';
+import { HomePageVideos } from '../Types';
 
 export default function Home() {
   const dispatch = useAppDispatch();
   const video =useAppSelector((state)=>state.youtubeApp.videos);
 
   useEffect(()=>{
-    dispatch(getHomePageVideos(false))
-    console.log(video);
-    
+    dispatch(getHomePageVideos(false))    
   },[dispatch])
 
   return (
@@ -21,6 +23,15 @@ export default function Home() {
      </div>
      <div className='flex' style={{height:"92.5vh"}}>
         <Sidebar />
+        {video.length? (<InfiniteScroll dataLength={video.length}
+            next={()=> dispatch(getHomePageVideos(true))}
+            hasMore ={video.length <500}
+            loader ={<Spinner />}
+            height ={650}
+          > <div className="grid gap-y-14 gap-x-8 grid-cols-4 p-8">
+            {video.map((item: HomePageVideos)=>{
+              return <Card data={item} key={item.videoId}/>
+            })}</div></InfiniteScroll>) :(<Spinner />)}
      </div>
     </div>
   )
