@@ -1,7 +1,7 @@
 export interface InitialState {
   videos: HomePageVideos[];
   currentPlaying: CurrentPlaying | null;
-  serachTerm: string;
+  searchTerm: string;
   serachResults: [];
   nextPageToken: string | null;
   recommendedVideos: RecommendedVideos[];
