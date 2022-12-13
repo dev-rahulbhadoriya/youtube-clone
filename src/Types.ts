@@ -1,26 +1,26 @@
 export interface InitialState {
-    videos : HomePageVideos[];
-    currentPlaying : CurrentPlaying | null;
-    serachTerm : string;
-    serachResults : [];
-    nextPageToken: string | null;
-    recommendedVideos: RecommendedVideos[];
+  videos: HomePageVideos[];
+  currentPlaying: CurrentPlaying | null;
+  serachTerm: string;
+  serachResults: [];
+  nextPageToken: string | null;
+  recommendedVideos: RecommendedVideos[];
 }
 
 export interface HomePageVideos {
-    videoId: string;
-    videoTitle: string;
-    videoDescription: string;
-    videoLink: string;
-    videoThumbnail: string;
-    videoDuration: string;
-    videoViews: string;
-    videoAge: string;
-    channelInfo: {
-        id:string;
-        image: string;
-        name: string;
-    }
+  videoId: string;
+  videoTitle: string;
+  videoDescription: string;
+  videoLink: string;
+  videoThumbnail: string;
+  videoDuration: string;
+  videoViews: string;
+  videoAge: string;
+  channelInfo: {
+    id: string;
+    image: string;
+    name: string;
+  };
 }
 export interface CurrentPlaying {}
 export interface RecommendedVideos {}
