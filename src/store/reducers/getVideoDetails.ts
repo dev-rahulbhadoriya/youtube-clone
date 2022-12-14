@@ -1,18 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { convertRawViewstoString, timeSince } from "../../utils";
+
 import { YOUTUBE_API_URL } from "../../utils/constants";
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_DATA_API_KEY;
 
 export const getVideoDetails = createAsyncThunk(
-  "youtubeApp/videoDetails",
+  "yotubeApp/videoDetails",
   async (id: string) => {
     const {
       data: { items },
     } = await axios.get(
       `${YOUTUBE_API_URL}/videos?key=${API_KEY}&part=snippet,statistics&type=video&id=${id}`
     );
+
     return parseData(items[0]);
   }
 );
@@ -42,8 +44,9 @@ const parseData = async (item: {
       ],
     },
   } = await axios.get(
-    `${YOUTUBE_API_URL}/channels?part=snippet,statistics$id=${item.snippet.channelId}&key=${API_KEY}`
+    `${YOUTUBE_API_URL}/channels?part=snippet,statistics&id=${item.snippet.channelId}&key=${API_KEY}`
   );
+
   return {
     videoId: item.id,
     videoTitle: item.snippet.title,
@@ -59,4 +62,3 @@ const parseData = async (item: {
     },
   };
 };
- 
